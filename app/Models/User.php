@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+//    public function form(){return $this->HasMany(Form::class);}
     /**
      * The attributes that are mass assignable.
      *

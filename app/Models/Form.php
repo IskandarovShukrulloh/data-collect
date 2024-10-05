@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Form extends Model
 {
     use HasFactory;
+    protected $table = 'forms';
+    protected $fillable = ['start_time', 'end_time', 'title', 'description'];
+//    public function form(){return $this->belongsTo(User::class);}
 }
