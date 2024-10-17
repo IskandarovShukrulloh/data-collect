@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
-            $table->datetime('start_time');
-            $table->datetime('end_time');
             $table->string('title');
             $table->text('description');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            #$$table->unsignedBigInteger('user_id');
+            #$table->foreign('user_id')->references('id')->on('users');
+            $table->datetime('start_time')->default(now());
+            $table->datetime('end_time')->default(now());
             $table->timestamps();
         });
     }

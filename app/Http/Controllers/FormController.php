@@ -21,51 +21,45 @@ class FormController extends Controller
         return view('forms.index', compact('forms'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('forms.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|min:1|max:30',
+            'description' => 'required|min:1|max:1000',
+
+        ]);
+        Form::create($validated);
+        //dd($forms);
+        return redirect()->route('forms.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Form $form)
     {
-        //
+        return view('forms.show', compact('form'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Form $form)
     {
-        //
+        return view('forms.edit', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Form $form)
     {
-        //
+        ;$form->update($request->all());
+        //dd($request->all());
+        return redirect()->route('forms.index');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Form $form)
     {
-        //
+        $form->delete();
+        return redirect()->route('forms.index');
     }
 }
